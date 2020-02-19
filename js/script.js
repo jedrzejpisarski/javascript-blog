@@ -5,8 +5,18 @@
   });*/
 
   const titleClickHandler = function(event){
-    const clickedElement = this;
+    
     console.log('Link was clicked!');
+    
+    event.preventDefault();
+    
+    clickedElement.classActive.add('active');
+    
+    const clickedElement = this;
+
+    const articleSelector('href=#')
+ 
+    
   
     /* [DONE] remove class 'active' from all article links  */
   
