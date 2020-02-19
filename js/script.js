@@ -4,6 +4,9 @@
   });*/
 
   const titleClickHandler = function(){
+
+    console.log (event);
+    
     console.log('Link was clicked!');
 
   /* remove class 'active' from all article links  */
