@@ -13,7 +13,7 @@
 
     const articleSelektor = document.clickedElement()
     
-    getAtribute = document.articleSelektor('href')
+    const articleSelektor = document.getAtribute('href')
     console.log('Link was clicked');
     
     const clickedElement = this;
