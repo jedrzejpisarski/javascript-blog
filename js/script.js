@@ -12,9 +12,13 @@
     
     clickedElement.classActive.add('active');
     
+    var a= const.articleSelector('href'){
+
+    console.log('Link was clicked');
+    
     const clickedElement = this;
 
-    const articleSelector('href=#')
+    
  
     
   
