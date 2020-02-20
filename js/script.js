@@ -14,7 +14,7 @@
     const articleSelektor = document.clickedElement()
     
     const articleSelektor = document.getAtribute('href')
-    console.log('Link was clicked');
+    console.log('done');
     
     const clickedElement = this;
 
@@ -38,7 +38,7 @@
     /* find the correct article using the selector (value of 'href' attribute) */
   
     const targetArticle = querySelector('href')
-    console.log('Link was clicked');
+    console.log('done');
 
     /* add class 'active' to the correct article */
 
