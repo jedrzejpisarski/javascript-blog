@@ -1,54 +1,32 @@
 
-/*document.getElementById('test-button').addEventListener('click', function(){
-    const links = document.querySelectorAll('.titles a');
-    console.log('links:', links);
-  });*/
-
-  const titleClickHandler = function(event){
-    console.log('Link was clicked!');
+function generateTitleLinks() {
+  const articles = document.querySelectorAll('.posts .post');
+  const linkList = document.querySelector('.list.titles');
+  
+  for(let article of articles) {
+    const title = article.querySelector('.post-title').innerHTML;
+    const html = '<li><a href="#' + article.id + '"><span>' + title + '</span></a></li>';
     
-    event.preventDefault();
-    
-    clickedElement.classActive.add('active');
-
-    const articleSelektor = document.clickedElement()
-    
-    const articleSelektor = document.getAtribute('href')
-    console.log('done');
-    
-    const clickedElement = this;
-
-  
-    /* [DONE] remove class 'active' from all article links  */
-  
-    const activeLinks = document.querySelectorAll('.titles a.active');
-  
-    for(let activeLink of activeLinks){
-      activeLink.classList.remove('active');
-    }
-  
-    /* [IN PROGRESS] add class 'active' to the clicked link */
-  
-    console.log('clickedElement:', clickedElement);
-  
-    /* [DONE] remove class 'active' from all articles */
-  
-    /* get 'href' attribute from the clicked link */
-  
-    /* find the correct article using the selector (value of 'href' attribute) */
-  
-    const targetArticle = querySelector('href')
-    console.log('done');
-
-    /* add class 'active' to the correct article */
-
-    querySelector.classActive.add('active');
+    linkList.innerHTML = linkList.innerHTML + html;
   }
   
-  const links = document.querySelectorAll('.titles a');
-  
-  for(let link of links){
+  const links = document.querySelectorAll('.list.titles a');
+  for(let link of links) {
     link.addEventListener('click', titleClickHandler);
-  
-  displayResult(argComputerMove, argPlayerMove);
   }
+}
+
+function titleClickHandler() {
+  const activeLink = document.querySelector('.list.titles a.active');
+  if(activeLink) activeLink.classList.remove('active');
+  
+  this.classList.add('active');
+  
+  const activeArticle = document.querySelector('.posts .post.active');
+  if(activeArticle) activeArticle.classList.remove('active');
+  
+  const articleId = this.getAttribute('href'); //#article-1
+  document.querySelector(articleId).classList.add('active')
+}
+
+generateTitleLinks();
