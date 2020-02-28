@@ -154,7 +154,7 @@ const optArticleSelector = '.post',
     const articles = document.querySelectorAll(optArticleAuthorSelector);
     
     /* START LOOP: for every author: */
-    for(let article of articles) {
+    for(let author of authors) {
     
       /* find tags wrapper */
       const tagsList = article.querySelector(optArticleAuthorSelector);
