@@ -1,4 +1,8 @@
 
+const templates = {
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
+}
+
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.post-title';
@@ -65,10 +69,10 @@ const optArticleSelector = '.post',
     for(let tag of tagsArray) {
 
       /* generate HTML of the link */
-      const htmlLink = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
-
+      const linkHTMLData = {id: articleId, title: articleTitle};
+      const linkHTML = templates.articleLink(linkHTMLData);
       /* add generated code to html variable */
-      html = html + htmlLink;
+      html = html + linkHTML;
     }
 
     tagsList.innerHTML = html;
