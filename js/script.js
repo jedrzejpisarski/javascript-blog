@@ -142,7 +142,6 @@ const optArticleSelector = '.post',
     let html = '';
     
     for(let author in allAuthors) {
-      const linkHTMLData = { author: author, className: className }; 
       const linkHTML = templates.authorCloud(linkHTMLData);
       html = html + linkHTML;
     }
