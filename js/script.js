@@ -136,7 +136,7 @@ const optArticleSelector = '.post',
     
     for(let article of articles) {
 
-        const authors = article.getAttribute('data-authors');
+        const authorList = article.getAttribute('data-authors');
     }
     
     let html = '';
