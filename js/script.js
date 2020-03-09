@@ -1,16 +1,18 @@
 
 const templates = {
-  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+  tagCloud: Handlebars.compile(document.querySelector('#template-tagcloud-link').innerHTML)
 }
 
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
-  optTitleListSelector = '.post-title';
-  optArticleTagsSelector = '.post-tags .list';
-  optArticleAuthorSelector = '.post-author';
+  optTitleListSelector = '.post-title',
+  optArticleTagsSelector = '.post-tags .list',
+  optArticleAuthorSelector = '.post-author',
+  optTagsCloud = '.list.tags',
+  optAuthorsCloud = '.list.authors';
   
   function generateTitleLinks(customSelector = ''){
-    console.log ='customSelector';
   const articles = document.querySelectorAll(optArticleSelector + customSelector);
   const linkList = document.querySelector('.list.titles');
 
@@ -89,6 +91,66 @@ const optArticleSelector = '.post',
 
   generateTags();
 
+  function generateTagsCloud() {
+    
+    const articles = document.querySelectorAll(optArticleSelector);
+    const tagList = document.querySelector(optTagsCloud); //dostęp do listy, do której chcemy wepchać wygenerowane linki
+    const allTags = {}; //przygotowujemy obiekt, do którego będziemy zbierać unikalne tagi
+
+    for(let article of articles) {
+
+        const tags = article.getAttribute('data-tags'); //news code test
+        const tagsArray = tags.split(' '); //['news', 'code', 'test']
+
+        for(let tag of tagsArray) { //przechodzimy po wszystkich tagach w danym artykule
+            if(allTags[tag]) allTags[tag] = allTags[tag] + 1 //sprawdzamy czy tag jesju juz w allTags, jesli tak to zwiekszamy jego wartosc, zeby wiedziec, ze sie powtrozyl
+            else allTags[tag] = 1 //a jesli tagu nie ma jeszcze w allTags, to dodajemy go jako nowy atrybut i nadajemy mu wartosc 1 (ze wystapil poki co tylko raz)
+        }
+    }
+
+    let html = '';
+    for(let tag in allTags) { //przechodzimy po obiekcie z unikalnymi tagami
+
+      // ustalamy inna nazwę klasy zaleznie od tego ile razy dany tag wystapil. Czy czesto czy rzadko itd. Klasy musza byc ostylwane w css
+      let className = '';
+      if(allTags[tag] > 9) className = 'tag-size-big';
+      else if(allTags[tag] > 8) className = 'tag-size-medium';
+      else className = 'tag-size-small';
+
+      const linkHTMLData = { tag: tag, className: className }; //generujemy link na podstawie szablonu
+      const linkHTML = templates.tagCloud(linkHTMLData);
+      /* add generated code to html variable */
+      html = html + linkHTML; //doklejamy nowy link do zmiennej html
+    }
+
+    tagList.innerHTML = html; //sklejone linki jako jedna calosc dodajemy jako nowa zawartosc tagList
+  }
+
+  generateTagsCloud();
+
+  function generateAuthorsCloud() {
+    
+    const articles = document.querySelectorAll(optArticleSelector);
+    const authorsList = document.querySelector(optAuthorsCloud); //dostęp do listy, do której chcemy wepchać wygenerowane linki
+    const allAuthors = {}; //przygotowujemy obiekt, do którego będziemy zbierać unikalne tagi
+    
+    for(let article of articles) {
+
+        const authors = article.getAttribute('data-authors');
+    }
+    
+    let html = '';
+    
+    for(let author in allAuthors) {
+      const linkHTMLData = { author: author, className: className }; 
+      const linkHTML = templates.authorCloud(linkHTMLData);
+      html = html + linkHTML;
+    }
+    
+    authorList.innerHTML = html;
+    
+  generateAuthorsCloud();
+    
   function tagClickHandler(event){
 
     event.preventDefault();
@@ -117,7 +179,7 @@ const optArticleSelector = '.post',
   function addClickListenersToTags(){
 
     /* find all links to tags */
-    const links = document.querySelectorAll('.post-tags a');
+    const links = document.querySelectorAll('.post-tags a, .list.tags a');
 
     /* START LOOP: for each link */
     for(let link of links) {
