@@ -1,7 +1,8 @@
 
 const templates = {
   articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
-  tagCloud: Handlebars.compile(document.querySelector('#template-tagcloud-link').innerHTML)
+  tagCloud: Handlebars.compile(document.querySelector('#template-tagcloud-link').innerHTML),
+  authorCloud: Handlebars.compile(document.querySelector('#template-author-link').innerHTML);
 }
 
 const optArticleSelector = '.post',
