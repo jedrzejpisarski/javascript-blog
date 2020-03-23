@@ -193,7 +193,7 @@ optAuthorsCloud = '.list.authors';
   function generateAuthorsCloud() {
     
     const articles = document.querySelectorAll(optArticleSelector);
-    const authorsList = document.querySelector(optAuthorsCloud); //dostęp do listy, do której chcemy wepchać wygenerowane linki
+    const authorList = document.querySelector(optAuthorsCloud); //dostęp do listy, do której chcemy wepchać wygenerowane linki
     const allAuthors = {}; //przygotowujemy obiekt, do którego będziemy zbierać unikalne tagi
     
     for(let article of articles) {
