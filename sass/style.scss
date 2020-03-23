@@ -118,3 +118,19 @@ body {
     margin: 0 10px 0 0;
   }
 }
+
+.tag-size {
+    &-small {
+        font-size: 12px;
+    }
+    &-medium {
+        font-size: 20px;
+    }
+    &-big {
+        font-size: 30px;
+    }
+}
+
+.list.tags li {
+    display: inline-block;
+}
