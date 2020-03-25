@@ -197,19 +197,19 @@ optAuthorsCloud = '.list.authors';
     const allAuthors = {}; //przygotowujemy obiekt, do którego będziemy zbierać unikalne tagi
     
     for(let article of articles) {
-
-      const authorList = article.getAttribute('data-authors');
+      const author = article.getAttribute('data-author');
+      if(!allAuthors[author]) allAuthors[author] = true
     }
     
     let html = '';
     
     for(let author in allAuthors) {
-      const linkHTML = templates.authorCloud(linkHTMLData);
+      const linkHTML = templates.authorCloud({ author });
       html = html + linkHTML;
     }
     
     authorList.innerHTML = html;
-  }  
+  } 
   generateAuthorsCloud();
 
   function authorClickHandler(event){
